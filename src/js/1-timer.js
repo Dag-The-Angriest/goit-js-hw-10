@@ -12,14 +12,14 @@ let seconds = document.querySelector('span[data-seconds]');
 
 button.setAttribute('disabled', 'disabled');
 let timer;
-let userSelectedDate;
+// let userSelectedDate;
 const options = {
   enableTime: true,
   time_24hr: true,
   defaultDate: new Date(),
   minuteIncrement: 1,
   onClose(selectedDates) {
-    userSelectedDate = selectedDates[0];
+    // userSelectedDate = selectedDates[0];
     // console.log(userSelectedDate);
 
     console.log(fp.selectedDates[0].getTime());
@@ -36,7 +36,6 @@ const options = {
 };
 flatpickr('#datetime-picker', options);
 const fp = document.querySelector('#datetime-picker')._flatpickr;
-// let userSelectedDate = new Date().getTime();
 
 function convertMs(ms) {
   // Number of milliseconds per unit of time
