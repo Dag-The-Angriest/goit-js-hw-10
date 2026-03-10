@@ -4,6 +4,7 @@ import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
 const button = document.querySelector('button[data-start]');
+const picker = document.querySelector('#datetime-picker');
 let days = document.querySelector('span[data-days]');
 let hours = document.querySelector('span[data-hours]');
 let minutes = document.querySelector('span[data-minutes]');
@@ -79,11 +80,12 @@ button.addEventListener('click', () => {
     hours.innerHTML = str.hours;
     minutes.innerHTML = str.minutes;
     seconds.innerHTML = str.seconds;
-
+    picker.setAttribute('disabled', 'disabled');
     addLeadingZero(str.days);
     if (diff <= 1000) {
       clearInterval(timer);
-      button.removeAttribute('disabled');
+
+      picker.removeAttribute('disabled');
     }
   }, 1000);
 });
