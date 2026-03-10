@@ -72,8 +72,9 @@ console.log();
 
 button.addEventListener('click', () => {
   picker.setAttribute('disabled', 'disabled');
+
+  button.setAttribute('disabled', 'disabled');
   timer = setInterval(() => {
-    button.setAttribute('disabled', 'disabled');
     const currentTime = Date.now();
     const diff = fp.selectedDates[0] - currentTime;
     const str = convertMs(diff);
