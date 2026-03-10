@@ -16,3 +16,20 @@
 @import url('./badges.css');
 @import url('./back-link.css');
 @import url('./footer.css');
+
+.field {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.timer {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+.value {
+  font-size: 48px;
+}
+.label {
+  text-transform: uppercase;
+}
