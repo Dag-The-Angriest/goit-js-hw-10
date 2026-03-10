@@ -24,7 +24,7 @@ const options = {
 
     console.log(fp.selectedDates[0].getTime());
     // console.log(selectedDates[0]);
-    if (Date.now() > selectedDates[0].getTime()) {
+    if (Date.now() >= selectedDates[0].getTime()) {
       button.setAttribute('disabled', 'disabled');
       return iziToast.error({
         title: 'Error',
@@ -71,6 +71,7 @@ function addLeadingZero(d, h, m, s) {
 console.log();
 
 button.addEventListener('click', () => {
+  picker.setAttribute('disabled', 'disabled');
   timer = setInterval(() => {
     button.setAttribute('disabled', 'disabled');
     const currentTime = Date.now();
@@ -80,7 +81,6 @@ button.addEventListener('click', () => {
     hours.innerHTML = str.hours;
     minutes.innerHTML = str.minutes;
     seconds.innerHTML = str.seconds;
-    picker.setAttribute('disabled', 'disabled');
     addLeadingZero(str.days);
     if (diff <= 1000) {
       clearInterval(timer);
