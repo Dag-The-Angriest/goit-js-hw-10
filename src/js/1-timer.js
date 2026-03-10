@@ -11,16 +11,19 @@ let seconds = document.querySelector('span[data-seconds]');
 
 button.setAttribute('disabled', 'disabled');
 let timer;
+let userSelectedDate;
 const options = {
   enableTime: true,
   time_24hr: true,
   defaultDate: new Date(),
   minuteIncrement: 1,
   onClose(selectedDates) {
-    console.log(userSelectedDate);
+    userSelectedDate = selectedDates[0];
+    // console.log(userSelectedDate);
+
     console.log(fp.selectedDates[0].getTime());
     // console.log(selectedDates[0]);
-    if (userSelectedDate > selectedDates[0].getTime()) {
+    if (Date.now() > selectedDates[0].getTime()) {
       button.setAttribute('disabled', 'disabled');
       return iziToast.error({
         title: 'Error',
@@ -32,7 +35,7 @@ const options = {
 };
 flatpickr('#datetime-picker', options);
 const fp = document.querySelector('#datetime-picker')._flatpickr;
-let userSelectedDate = new Date().getTime();
+// let userSelectedDate = new Date().getTime();
 
 function convertMs(ms) {
   // Number of milliseconds per unit of time
@@ -67,8 +70,8 @@ function addLeadingZero(d, h, m, s) {
 console.log();
 
 button.addEventListener('click', () => {
-  button.setAttribute('disabled', 'disabled');
   timer = setInterval(() => {
+    button.setAttribute('disabled', 'disabled');
     const currentTime = Date.now();
     const diff = fp.selectedDates[0] - currentTime;
     const str = convertMs(diff);
@@ -76,9 +79,11 @@ button.addEventListener('click', () => {
     hours.innerHTML = str.hours;
     minutes.innerHTML = str.minutes;
     seconds.innerHTML = str.seconds;
+
     addLeadingZero(str.days);
     if (diff <= 1000) {
       clearInterval(timer);
+      button.removeAttribute('disabled');
     }
   }, 1000);
 });
